@@ -17,6 +17,9 @@ public class Calculadora{
 	}
 	
 	public float division(float dividendo, float divisor){
+		if(divisor == 0) {
+			throw new IllegalArgumentException("Argument divisor is 0");
+		}
 		return ultimoResultado = dividendo / divisor;
 	}
 	

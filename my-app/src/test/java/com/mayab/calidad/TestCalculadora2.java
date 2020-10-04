@@ -1,6 +1,7 @@
 package com.mayab.calidad;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,7 +14,7 @@ public class TestCalculadora2 {
 	static Calculadora calculadora;
 	
 	@BeforeClass
-	public void setup() {
+	public static void setup() {
 		calculadora = new Calculadora();
 	}
 
@@ -26,7 +27,8 @@ public class TestCalculadora2 {
 		
 		result = calculadora.suma(one, two);
 		
-		assertEquals(expectedResult, result,0);
+		//assertEquals(expectedResult, result,0);
+		assertThat(result, is(expectedResult));
 	}
 	
 	@Test
@@ -38,7 +40,41 @@ public class TestCalculadora2 {
 		
 		result = calculadora.resta(one, two);
 		
-		assertEquals(expectedResult, result,0);
+		//assertEquals(expectedResult, result,0);
+		assertThat(result, is(expectedResult));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void dividirEntre0() {
+		float one = 1;
+		float two = 0;
+		float expectedResult = Float.POSITIVE_INFINITY;
+		float result = -1;
+		
+		result = calculadora.division(one, two);
+		assertThat(result, is(expectedResult));
+	}
+	
+	@Test
+	public void dividir0Entre0() {
+		float one = 1;
+		float two = 0;
+		float expectedResult = Float.NaN;
+		float result = -1;
+		
+		result = calculadora.division(one, two);
+		assertThat(result, is(expectedResult));
+	}
+	
+	@Test
+	public void dividirMayorA0() {
+		float one = 44;
+		float two = 11;
+		float expectedResult = 4;
+		float result = -1;
+		
+		result = calculadora.division(one, two);
+		assertThat(result, is(expectedResult));
 	}
 	
 	@After
@@ -47,7 +83,7 @@ public class TestCalculadora2 {
 	}
 	
 	@AfterClass
-	public void fin() {
+	public static void fin() {
 		
 	}
 
