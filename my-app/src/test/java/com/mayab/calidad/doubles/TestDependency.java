@@ -1,12 +1,13 @@
 package com.mayab.calidad.doubles;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.hamcrest.Matchers.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 public class TestDependency {
 	
@@ -34,6 +35,29 @@ public class TestDependency {
 		when(dependency.getClassName()).thenReturn("Alex");
 		
 		assertThat(dependency.getClassName(), is("Alex"));
+	}
+	
+	@Test
+	public void testAnswer() {
+		when(dependency.addTwo(anyInt())).thenAnswer(new Answer<Integer>() {
+			public Integer answer(InvocationOnMock invocation) throws Throwable{
+				int arg = (Integer) invocation.getArguments()[0];
+				return arg+20;
+			}
+		});
+		assertEquals(30, dependency.addTwo(10));
+	}
+	
+	@Test
+	public void multiplyTest() {
+		when(dependency.multiply(anyInt(), anyInt())).thenAnswer(new Answer<Integer>() {
+			public Integer answer(InvocationOnMock invocation) throws Throwable{
+				int arg = (Integer) invocation.getArguments()[0];
+				int arg2 = (Integer) invocation.getArguments()[1];
+				return arg*arg2;
+			}
+		});
+		assertEquals(100, dependency.multiply(10, 10));
 	}
 
 }

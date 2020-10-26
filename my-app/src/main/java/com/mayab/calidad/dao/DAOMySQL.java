@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 public class DAOMySQL implements DAO {
 	
-	DAOMySQL(){
+	public DAOMySQL(){
 		
 	}
 	
@@ -50,31 +50,29 @@ public class DAOMySQL implements DAO {
 
 	@Override
 	public void removeStudent(Student student) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void updateStudentAverage(Student student, Float average) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public String getStudentName(String id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public HashMap<String, Student> getAllStudents() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Student getStudent(String id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

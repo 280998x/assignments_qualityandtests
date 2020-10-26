@@ -7,14 +7,14 @@ public class Student {
 	private Integer age;
 	private Float average;
 
-	Student(){
+	public Student(){
 		this.name="";
 		this.email="";
 		this.age=0;
 		this.average=0f;
 	}
 	
-	Student(String id, String name, String email, Integer age, Float average){
+	public Student(String id, String name, String email, Integer age, Float average){
 		this.setId(id);
 		this.setName(name);
 		this.setEmail(email);
