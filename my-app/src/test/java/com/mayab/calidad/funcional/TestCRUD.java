@@ -152,11 +152,26 @@ public class TestCRUD {
     		  List<WebElement> buttons = rowColumns.get(4).findElements(By.tagName("button"));
     		  buttons.get(1).click();
     		  driver.findElement(By.xpath("//div[3]/button")).click();
-    		  assertTrue(true);
     		  break;
     	  } else if (row == tableRows.size() - 1) {
     		  assertTrue(false);
     		  return;
+    	  }
+      }
+      
+      table = driver.findElement(By.xpath("//table/tbody"));
+      tableRows = table.findElements(By.tagName("tr"));
+      
+      for (int row = 0; row < tableRows.size(); row++) {
+    	  List<WebElement> rowColumns = tableRows.get(row).findElements(By.tagName("td"));
+    	  if(rowColumns.get(0).getText().equals(expectedName) &&
+    		 rowColumns.get(1).getText().equals(expectedEmail) &&
+    		 rowColumns.get(2).getText().equals(expectedAge) &&
+    		 rowColumns.get(3).getText().equals(expectedSex)) {
+    		  assertTrue(false);
+    		  return;
+    	  } else if (row == tableRows.size() - 1) {
+    		  assertTrue(true);
     	  }
       }
   }
