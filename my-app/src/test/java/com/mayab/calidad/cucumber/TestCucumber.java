@@ -22,7 +22,7 @@ public class TestCucumber {
 	  
 	@Given("browser is open")
 	  public void setup() throws Exception {
-		  System.setProperty("webdriver.gecko.driver", "E:\\- Folders\\Universidad\\Calidad y Pruebas de Software\\geckodriver.exe");
+		  System.setProperty("webdriver.gecko.driver", "E:\\-Folders\\Universidad\\Calidad y Pruebas de Software\\geckodriver.exe");
 		  driver = new FirefoxDriver();
 		  baseUrl = "https://www.google.com/";
 		  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -30,7 +30,7 @@ public class TestCucumber {
 	
 	@And("user is in login page")
 	  public void user_is_in_login_page() throws Exception {		  
-		  driver.get("https://mern-crud.herokuapp.com/");
+		  driver.get("https://example.testproject.io/web/");
 	}
 	
 	@When("user enters correct username and password")
