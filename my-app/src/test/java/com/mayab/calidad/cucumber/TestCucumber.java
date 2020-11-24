@@ -39,6 +39,12 @@ public class TestCucumber {
 		driver.findElement(By.id("password")).sendKeys("12345");
 	}
 	
+	@When("user enters wrong username and password")
+	public void enter_wrong_username_and_password() {
+		driver.findElement(By.id("name")).sendKeys("username");
+		driver.findElement(By.id("password")).sendKeys("56789");
+	}
+	
 	@When("user clicks login button")
 	public void click_login() {
 		driver.findElement(By.id("login")).click();;
@@ -47,6 +53,11 @@ public class TestCucumber {
 	@Then("website shows main page")
 	public void shows_main_page() {
 		assertEquals("Logout",driver.findElement(By.id("logout")).getText());
+	}
+	
+	@Then("login failed")
+	public void login_failed() {
+		assertEquals("Password is invalid",driver.findElement(By.xpath("/html/body/div[2]/div[1]/form/div[2]/div/div[2]")).getText());
 	}
 	
 }
