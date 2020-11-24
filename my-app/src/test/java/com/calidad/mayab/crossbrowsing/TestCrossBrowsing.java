@@ -23,7 +23,7 @@ public class TestCrossBrowsing {
 	  private String baseUrl;
 	  private boolean acceptNextAlert = true;
 	  private StringBuffer verificationErrors = new StringBuffer();
-	  private String URL = "";
+	  private String URL = "https://aazc28:0ff93f3b-ae76-467c-b3b3-8054bed40b1f@ondemand.us-west-1.saucelabs.com:443/wd/hub";
 	  
 
 	  @Before
