@@ -1,4 +1,7 @@
 language: java
+language: android
+
+dist: trusty
 
 services:
   - mysql
