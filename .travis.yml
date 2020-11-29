@@ -11,6 +11,9 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.9
+      - mysql-server-8.0.22
+      - mysql-client-core-8.0.22
+      - mysql-client-8.0.22
 
 android:
   components:
