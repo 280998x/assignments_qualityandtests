@@ -9,10 +9,9 @@ addons:
 cache:
 
 before_install:
-  - mysql 
+  - mysql -e "CREATE DATABASE IF NOT EXISTS quality;" 
 
 before_script:
-  - mysql -e "CREATE DATABASE IF NOT EXISTS quality;"
   - mysql -e "USE quality;
         DROP TABLE IF EXISTS `students`;
         CREATE TABLE `students` (
