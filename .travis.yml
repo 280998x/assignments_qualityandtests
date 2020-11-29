@@ -13,8 +13,8 @@ before_install:
 
 before_script:
   - mysql -e "CREATE DATABASE IF NOT EXISTS quality;"
-  - mysql -e "USE quality;"
-  - mysql -e "DROP TABLE IF EXISTS `students`;
+  - mysql -e "USE quality;
+	DROP TABLE IF EXISTS `students`;
 	CREATE TABLE `students` (
 	  `id` int NOT NULL,
 	  `name` varchar(30) DEFAULT NULL,
