@@ -15,7 +15,7 @@ public class DAOMySQL implements DAO {
 		Connection con = null;
 		String url = "jdbc:mysql://localhost:3306/quality?serverTimezone=EST";
         String user = "root";
-        String password = "Luneta1803";
+        String password = "";
 
         try {
         	con = DriverManager.getConnection(url, user, password);		
