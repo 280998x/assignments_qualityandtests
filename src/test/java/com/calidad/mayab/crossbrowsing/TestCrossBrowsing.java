@@ -28,7 +28,7 @@ public class TestCrossBrowsing {
 
 	  @Before
 	  public void setUp() throws Exception {
-		  System.setProperty("webdriver.gecko.driver", "E:\\- Folders\\Universidad\\Calidad y Pruebas de Software\\geckodriver.exe");
+		  System.setProperty("webdriver.gecko.driver", "geckodriver");
 		  DesiredCapabilities caps = DesiredCapabilities.firefox();
 		  //caps.setCapability("platform", "Windows 10");
 		  //caps.setCapability("platform", "Linux");
