@@ -31,8 +31,8 @@ public class TestCrossBrowsing {
 	  public void setUp() throws Exception {
 		  FirefoxOptions caps = new FirefoxOptions();
 		  //caps.setCapability("platform", "Windows 10");
-		  //caps.setCapability("platform", "Linux");
-		  caps.setCapability("platform", "macOS 10.13");
+		  caps.setCapability("platform", "Linux");
+		  //caps.setCapability("platform", "macOS 10.13");
 		  caps.setCapability("version", "latest");
 		  caps.setCapability("name", "Firefox");
 		  caps.setCapability("extendedDebugging", "true");
