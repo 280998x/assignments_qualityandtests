@@ -6,7 +6,9 @@ services:
 addons:
   firefox: 83.0
 
-cache:
+env:
+  global:
+    - MOZ_HEADLESS=1
 
 before_install:
   - mysql -e "CREATE DATABASE IF NOT EXISTS quality;"
