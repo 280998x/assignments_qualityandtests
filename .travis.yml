@@ -22,3 +22,7 @@ before_script:
           average float DEFAULT NULL,
           PRIMARY KEY (id)
         )"
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.28.0/geckodriver-v0.28.0-linux64.tar.gz
+  - mkdir geckodriver
+  - tar -xzf geckodriver-v0.28.0-linux64.tar.gz -C geckodriver
+  - export PATH=$PATH:$PWD/geckodriver
