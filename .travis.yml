@@ -16,10 +16,10 @@ before_script:
   - mysql -e "USE quality;"
   - mysql -e "DROP TABLE IF EXISTS `students`;
 	CREATE TABLE `students` (
-  	`id` int NOT NULL,
-  	`name` varchar(30) DEFAULT NULL,
-  	`email` varchar(100) DEFAULT NULL,
-  	`age` int DEFAULT NULL,
-  	`average` float DEFAULT NULL,
-  	PRIMARY KEY (`id`)
+	  `id` int NOT NULL,
+	  `name` varchar(30) DEFAULT NULL,
+	  `email` varchar(100) DEFAULT NULL,
+	  `age` int DEFAULT NULL,
+	  `average` float DEFAULT NULL,
+	  PRIMARY KEY (`id`)
 	)"
