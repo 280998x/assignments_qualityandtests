@@ -1,6 +1,10 @@
 language: java
+
+addons:
+  firefox: stable
+
 before_script:
-	# - npm install -g firefoxdriver
-	# - npm install -g selenium-side-runner
-	- yarn add firefoxdriver
-	- yarn add selenium-side-runner
+  # - npm install -g firefoxdriver
+  # - npm install -g selenium-side-runner
+  - yarn add firefoxdriver
+  - yarn add selenium-side-runner
