@@ -63,9 +63,9 @@ public class Student {
 	}
 	
 	public Boolean equals(Student student) {
-		if(this.id == student.getId() &&
-		   this.name == student.getName() &&
-		   this.email == student.getEmail() &&
+		if(this.id.equals(student.getId()) &&
+		   this.name.equals(student.getName()) &&
+		   this.email.equals(student.getEmail() ) &&
 		   this.age == student.getAge() &&
 		   this.average == student.getAverage()) {
 			return true;
