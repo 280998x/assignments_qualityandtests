@@ -38,7 +38,6 @@ public class TestCrossBrowsing {
 		  caps.setCapability("buildNumber", "3.0");
 		  driver = new RemoteWebDriver(new java.net.URL(URL), caps);
 		  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		  driver.get("https://mern-crud.herokuapp.com");
 	  }
 
 	  @Test
