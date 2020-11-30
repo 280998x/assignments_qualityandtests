@@ -34,7 +34,6 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 		System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:mysql://localhost:3306/quality");
 		System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "root");
 		System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "");
-		
 	}
 	
 	@Before
@@ -65,6 +64,14 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	@Test
+	public void testGetStudent() {
+		Student s = new Student("00331754","Alan Zuniga","00331754@anahuac.mx",22,7.8f);
+		DAOMySQL dao = new DAOMySQL();
+		Student student = dao.getStudent("00331754");
+		assertEquals(s, student);
 	}
 	
 	@After

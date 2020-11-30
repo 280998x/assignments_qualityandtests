@@ -59,9 +59,24 @@ public class DAOMySQL implements DAO {
 	}
 
 	@Override
-	public String getStudentName(String id) {
-		
-		return null;
+	public Student getStudent(String id) {
+		Student student = null;
+		Connection con = getConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM students WHERE id = ?");
+			
+			ps.setString(1, id);
+			
+			ResultSet result = ps.executeQuery();
+			
+			student = new Student(result.getString(0), result.getString(1), result.getString(2), result.getInt(3), result.getFloat(4));
+			
+			con.close();
+			
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return student;
 	}
 
 	@Override
@@ -71,8 +86,8 @@ public class DAOMySQL implements DAO {
 	}
 
 	@Override
-	public Student getStudent(String id) {
-		
+	public String getStudentName(String id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
