@@ -50,12 +50,35 @@ public class DAOMySQL implements DAO {
 
 	@Override
 	public void removeStudent(Student student) {
-
+		Connection con = getConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement("DELETE FROM students WHERE id = ?");
+			
+			ps.setString(1, student.getId());			
+			ps.executeUpdate();
+			
+			con.close();			
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
 	public void updateStudentAverage(Student student, Float average) {
+		Connection con = getConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement("UPDATE students SET average = ? WHERE id = ?");
 
+			ps.setFloat(1, average);
+			ps.setString(2, student.getId());
+			
+			ps.executeUpdate();
+			
+			con.close();
+			
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	@Override

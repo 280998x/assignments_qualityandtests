@@ -28,6 +28,8 @@ import org.junit.Test;
 import com.mayab.calidad.dao.DAOMySQL;
 import com.mayab.calidad.dao.Student;
 
+import junit.framework.Assert;
+
 public class TestStudentDAOMySQLInsert extends DBTestCase {
 	
 	DAOMySQL dao = new DAOMySQL();
@@ -77,26 +79,21 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 	}
 	
 	@Test
-	public void testGetAll() throws Exception {
-		IDatabaseConnection connection= getConnection();
-		Student student = new Student("00335486","Fredy Fuzman","00335486@anahuac.mx",21,8.2f);
+	public void testUpdate() {
+		Student s = new Student("331754","Alan Zuniga","00331754@anahuac.mx",22,7.8f);
 		
-		dao.addStudent(student);
+		dao.updateStudentAverage(s, 7.1f);
 		
-		IDataSet databaseDataSet = getConnection().createDataSet();			
-		HashMap<String, Student> actualTable =  dao.getAllStudents();
-		
-		IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/resources/insert_result.xml"));
-		ITable expectedTable = expectedDataSet.getTable("students");		
+		assertEquals(7.8f, dao.getStudent("00331754").getAverage());
+	}
 	
-		for(int i = 0; i<actualTable.size();i++) {
-			
-			assertEquals(expectedTable.getValue(i, "id"), actualTable.get(i).getId());
-			assertEquals(expectedTable.getValue(i, "name"), actualTable.get(i).getName());
-			
-		}
+	@Test
+	public void testDelete() {
+		Student s = new Student("331754","Alan Zuniga","00331754@anahuac.mx",22,7.8f);
 		
-		connection.close();	
+		dao.removeStudent(s);
+		
+		assertEquals(null, dao.getStudent("00331754"));
 	}
 	
 	@After
