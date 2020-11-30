@@ -80,8 +80,8 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 		Student s = new Student("335486","Fredy Fuzman","00335486@anahuac.mx",21,8.2f);
 		Student student = new Student("331754","Alan Zuniga","00331754@anahuac.mx",22,7.8f);
 		HashMap<String, Student> students = new HashMap<String, Student>();
-		students.put(s.getId(), s);
 		students.put(student.getId(), student);
+		students.put(s.getId(), s);
 		DAOMySQL dao = new DAOMySQL();
 		assertTrue(dao.getAllStudents().equals(students));
 	}
