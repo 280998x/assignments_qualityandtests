@@ -66,8 +66,8 @@ public class Student {
 		if(this.id.equals(student.getId()) &&
 		   this.name.equals(student.getName()) &&
 		   this.email.equals(student.getEmail() ) &&
-		   this.age == student.getAge() &&
-		   this.average == student.getAverage()) {
+		   this.age.equals(student.getAge()) &&
+		   this.average.equals(student.getAverage())) {
 			return true;
 		}
 		return false;
