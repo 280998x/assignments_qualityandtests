@@ -132,29 +132,18 @@ public class TestCrossBrowsing {
 	  public void testPop() throws Exception {
 		  driver.get("https://mern-crud.herokuapp.com/");
 		  
-		  String expectedName = "Alan";
-		  String expectedEmail = "0034@anahuac.mx";
-		  String expectedAge = "21";
-		  String expectedSex = "m";
-		  
 		  WebElement table = driver.findElement(By.xpath("//table/tbody"));
 	      List<WebElement> tableRows = table.findElements(By.tagName("tr"));
-	      
-	      for (int row = 0; row < tableRows.size(); row++) {
-	    	  List<WebElement> rowColumns = tableRows.get(row).findElements(By.tagName("td"));
-	    	  if(rowColumns.get(0).getText().equals(expectedName) &&
-	    		 rowColumns.get(1).getText().equals(expectedEmail) &&
-	    		 rowColumns.get(2).getText().equals(expectedAge) &&
-	    		 rowColumns.get(3).getText().equals(expectedSex)) {
-	    		  List<WebElement> buttons = rowColumns.get(4).findElements(By.tagName("button"));
-	    		  buttons.get(1).click();
-	    		  driver.findElement(By.xpath("//div[3]/button")).click();
-	    		  break;
-	    	  } else if (row == tableRows.size() - 1) {
-	    		  assertTrue(false);
-	    		  return;
-	    	  }
-	      }
+    	  List<WebElement> rowColumns = tableRows.get(0).findElements(By.tagName("td"));
+    	  
+    	  String expectedName = rowColumns.get(0).getText();
+		  String expectedEmail = rowColumns.get(1).getText();
+		  String expectedAge = rowColumns.get(2).getText();
+		  String expectedSex = rowColumns.get(3).getText();
+		  
+		  List<WebElement> buttons = rowColumns.get(4).findElements(By.tagName("button"));
+		  buttons.get(1).click();
+		  driver.findElement(By.xpath("//div[3]/button")).click();
 	      
 		  driver.get("https://mern-crud.herokuapp.com/");
 	      
@@ -162,7 +151,7 @@ public class TestCrossBrowsing {
 	      tableRows = table.findElements(By.tagName("tr"));
 	      
 	      for (int row = 0; row < tableRows.size(); row++) {
-	    	  List<WebElement> rowColumns = tableRows.get(row).findElements(By.tagName("td"));
+	    	  rowColumns = tableRows.get(row).findElements(By.tagName("td"));
 	    	  if(rowColumns.get(0).getText().equals(expectedName) &&
 	    		 rowColumns.get(1).getText().equals(expectedEmail) &&
 	    		 rowColumns.get(2).getText().equals(expectedAge) &&
