@@ -127,8 +127,9 @@ public class TestCrossBrowsing {
 		  driver.findElement(By.xpath("//div[3]/div[2]/div")).click();
 		  driver.findElement(By.xpath("//div[2]/div[1]")).click();
 		  driver.findElement(By.xpath("//form/button")).click();
-		  assertEquals("Successfully updated!", new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form/div[4]/div/p"))).getText());
+		  assertEquals("Successfully updated!", new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form/div[4]/div/p"))).getText());
 	      driver.findElement(By.xpath("//i")).click();
+		  driver.get("https://mern-crud.herokuapp.com/");
 	      table = driver.findElement(By.xpath("//table/tbody"));
 	      tableRows = table.findElements(By.tagName("tr"));
 	      for (int row = 0; row < tableRows.size(); row++) {
@@ -138,7 +139,7 @@ public class TestCrossBrowsing {
 	    		 rowColumns.get(2).getText().equals(newAge) &&
 	    		 rowColumns.get(3).getText().equals(newSex)) {
 	    		  assertTrue(true);
-	    		  break;
+	    		  return;
 	    	  } else if (row == tableRows.size() - 1) {
 	    		  assertTrue(false);
 	    	  }
@@ -156,6 +157,7 @@ public class TestCrossBrowsing {
 		  
 		  WebElement table = driver.findElement(By.xpath("//table/tbody"));
 	      List<WebElement> tableRows = table.findElements(By.tagName("tr"));
+	      
 	      for (int row = 0; row < tableRows.size(); row++) {
 	    	  List<WebElement> rowColumns = tableRows.get(row).findElements(By.tagName("td"));
 	    	  if(rowColumns.get(0).getText().equals(expectedName) &&
@@ -171,6 +173,8 @@ public class TestCrossBrowsing {
 	    		  return;
 	    	  }
 	      }
+	      
+		  driver.get("https://mern-crud.herokuapp.com/");
 	      
 	      table = driver.findElement(By.xpath("//table/tbody"));
 	      tableRows = table.findElements(By.tagName("tr"));
