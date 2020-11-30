@@ -28,6 +28,8 @@ import com.mayab.calidad.dao.DAOMySQL;
 import com.mayab.calidad.dao.Student;
 
 public class TestStudentDAOMySQLInsert extends DBTestCase {
+	
+	DAOMySQL dao = new DAOMySQL();
 
 	public TestStudentDAOMySQLInsert(String name) {
 		super(name);
@@ -52,7 +54,6 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 	@Test
 	public void testInsert() throws Exception {
 		Student s = new Student("00335486","Fredy Fuzman","00335486@anahuac.mx",21,8.2f);
-		DAOMySQL dao = new DAOMySQL();
 		
 		dao.addStudent(s);
 		
@@ -70,22 +71,8 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 	@Test
 	public void testGet() {
 		Student s = new Student("331754","Alan Zuniga","00331754@anahuac.mx",22,7.8f);
-		DAOMySQL dao = new DAOMySQL();
 		Student student = dao.getStudent("331754");
 		assertTrue(s.equals(student));
-	}
-	
-	@Test
-	public void testGetAll() {
-		Student s = new Student("335486","Fredy Fuzman","00335486@anahuac.mx",21,8.2f);
-		Student student = new Student("331754","Alan Zuniga","00331754@anahuac.mx",22,7.8f);
-		HashMap<String, Student> students = new HashMap<String, Student>();
-		students.put(student.getId(), student);
-		students.put(s.getId(), s);
-		
-		DAOMySQL dao = new DAOMySQL();
-		HashMap<String, Student> ss = dao.getAllStudents();
-		assertTrue(ss.containsValue(s));
 	}
 	
 	@After
