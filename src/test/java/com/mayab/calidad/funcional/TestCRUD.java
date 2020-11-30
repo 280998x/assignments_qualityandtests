@@ -22,6 +22,8 @@ public class TestCRUD {
 
   @Before
   public void setUp() throws Exception {
+	  System.setProperty("webdriver.gecko.driver", "E:\\-Folders\\Universidad\\Calidad y Pruebas de Software\\geckodriver.exe");
+	  
 	  driver = new FirefoxDriver();
 	  baseUrl = "https://www.google.com/";
 	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -142,6 +144,7 @@ public class TestCRUD {
 	  
 	  WebElement table = driver.findElement(By.xpath("//table/tbody"));
       List<WebElement> tableRows = table.findElements(By.tagName("tr"));
+      
       for (int row = 0; row < tableRows.size(); row++) {
     	  List<WebElement> rowColumns = tableRows.get(row).findElements(By.tagName("td"));
     	  if(rowColumns.get(0).getText().equals(expectedName) &&
@@ -157,6 +160,8 @@ public class TestCRUD {
     		  return;
     	  }
       }
+      
+	  driver.get("https://mern-crud.herokuapp.com/");
       
       table = driver.findElement(By.xpath("//table/tbody"));
       tableRows = table.findElements(By.tagName("tr"));
