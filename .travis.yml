@@ -1,35 +1,10 @@
 language: java
-language: android
 
 services:
   - mysql
 
 addons:
   firefox: 83.0
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.9
-      - mysql-server-5.6
-      - mysql-client-core-5.6
-      - mysql-client-5.6
-
-android:
-  components:
-    # use the latest revision of Android SDK Tools
-    - platform-tools
-    - tools
-
-    # Additional components
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
-    - addon-google_apis-google-19
-
-    # Specify at least one system image,
-    # if you need to run emulator(s) during your tests
-    - sys-img-armeabi-v7a-android-22
 
 env:
   global:
@@ -54,20 +29,3 @@ before_script:
   - mkdir geckodriver
   - tar -xzf geckodriver-v0.28.0-linux64.tar.gz -C geckodriver
   - export PATH=$PATH:$PWD/geckodriver
-
-  # node stuff
-  - nvm install 10
-  - npm install appium-test-support # get the travis emu scripts
-
-  # android stuff
-  - android list sdk --extended --no-ui --all
-  - android list targets
-  - $(npm bin)/android-emu-travis-pre
-
-  # npm stuff
-  - npm install
-
-  # make sure emulator started
-  - $(npm bin)/android-emu-travis-post
-  - sleep 30
-  - adb shell input keyevent 82 &
