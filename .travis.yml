@@ -23,8 +23,8 @@ before_script:
           age int DEFAULT NULL,
           average float DEFAULT NULL,
           PRIMARY KEY (id)
-        );
-        INSERT INTO students(id,name,email,age,average) values("00331754","Alan Zuniga","00331754@anahuac.mx",22,7.8);"
+        );"
+   - mysql -e "INSERT INTO students(id,name,email,age,average) values("00331754","Alan Zuniga","00331754@anahuac.mx",22,7.8);"
 
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.28.0/geckodriver-v0.28.0-linux64.tar.gz
   - mkdir geckodriver
