@@ -82,8 +82,23 @@ public class DAOMySQL implements DAO {
 
 	@Override
 	public HashMap<String, Student> getAllStudents() {
-		
-		return null;
+		HashMap<String, Student> students = new HashMap<String, Student>();
+		Connection con = getConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM students");
+			
+			ResultSet result = ps.executeQuery();
+			
+			while(result.next()) {
+				Student student = new Student(result.getString("id"), result.getString("name"), result.getString("email"), result.getInt("age"), result.getFloat("average"));
+				students.put(student.getId(), student);
+			}
+			con.close();
+			
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return students;
 	}
 
 	@Override
