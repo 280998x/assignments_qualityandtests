@@ -84,7 +84,7 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 		
 		dao.updateStudentAverage(s, 7.1f);
 		
-		assertEquals(7.8f, dao.getStudent("00331754").getAverage());
+		assertEquals(7.1f, dao.getStudent("00331754").getAverage());
 	}
 	
 	@Test
