@@ -70,7 +70,7 @@ public class DAOMySQL implements DAO {
 			ResultSet result = ps.executeQuery();
 			result.next();
 			
-			student = new Student(result.getString(0), result.getString(1), result.getString(2), result.getInt(3), result.getFloat(4));
+			student = new Student(result.getString("id"), result.getString("name"), result.getString("email"), result.getInt("age"), result.getFloat("average"));
 			
 			con.close();
 			
