@@ -12,7 +12,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,7 +28,7 @@ public class TestCrossBrowsing {
 
 	  @Before
 	  public void setUp() throws Exception {
-		  FirefoxOptions caps = new FirefoxOptions();
+		  DesiredCapabilities caps = DesiredCapabilities.firefox();
 		  //caps.setCapability("platform", "Windows 10");
 		  caps.setCapability("platform", "Linux");
 		  //caps.setCapability("platform", "macOS 10.13");
@@ -38,8 +37,8 @@ public class TestCrossBrowsing {
 		  caps.setCapability("extendedDebugging", "true");
 		  caps.setCapability("buildNumber", "3.0");
 		  driver = new RemoteWebDriver(new java.net.URL(URL), caps);
-		  driver.get("https://mern-crud.herokuapp.com");
 		  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		  driver.get("https://mern-crud.herokuapp.com");
 	  }
 
 	  @Test
