@@ -84,7 +84,8 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 		students.put(s.getId(), s);
 		
 		DAOMySQL dao = new DAOMySQL();
-		assertTrue(dao.getAllStudents().equals(students));
+		HashMap<String, Student> ss = dao.getAllStudents();
+		assertTrue(ss.containsValue(s));
 	}
 	
 	@After
