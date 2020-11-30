@@ -62,6 +62,15 @@ public class Student {
 		return this.average;
 	}
 	
-	
+	public Boolean equals(Student student) {
+		if(this.id == student.getId() &&
+		   this.name == student.getName() &&
+		   this.email == student.getEmail() &&
+		   this.age == student.getAge() &&
+		   this.average == student.getAverage()) {
+			return true;
+		}
+		return false;
+	}
 	
 }
