@@ -45,17 +45,6 @@ public class TestCalculadora2 {
 	}
 	
 	@Test
-	public void dividir0Entre0() {
-		float one = 1;
-		float two = 0;
-		float expectedResult = Float.NaN;
-		float result = -1;
-		
-		result = calculadora.division(one, two);
-		assertThat(result, is(expectedResult));
-	}
-	
-	@Test
 	public void dividirMayorA0() {
 		float one = 44;
 		float two = 11;
