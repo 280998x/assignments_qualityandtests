@@ -41,7 +41,7 @@ public class TestCrossBrowsing {
 	  }
 
 	  @Test
-	  public void testAdd_Succesful() throws Exception {
+	  public void testAdd() throws Exception {
 		  String name = "Alan Zuniga";
 		  String email = "00331754@anahuac.mx";
 		  String age = "22";
@@ -81,32 +81,15 @@ public class TestCrossBrowsing {
 	  }
 	  
 	  @Test
-	  public void testModify_Successful() throws Exception {
+	  public void testModify() throws Exception {
 		  driver.get("https://mern-crud.herokuapp.com/");
 		  
-		  String expectedName = "Alan Zuniga";
-		  String expectedEmail = "00331754@anahuac.mx";
-		  String expectedAge = "22";
-		  String expectedSex = "m";
 		  WebElement editButton = null;
-		  
 		  WebElement table = driver.findElement(By.xpath("//table/tbody"));
 	      List<WebElement> tableRows = table.findElements(By.tagName("tr"));
-	      for (int row = 0; row < tableRows.size(); row++) {
-	    	  List<WebElement> rowColumns = tableRows.get(row).findElements(By.tagName("td"));
-	    	  if(rowColumns.get(0).getText().equals(expectedName) &&
-	    		 rowColumns.get(1).getText().equals(expectedEmail) &&
-	    		 rowColumns.get(2).getText().equals(expectedAge) &&
-	    		 rowColumns.get(3).getText().equals(expectedSex)) {
-	    		  List<WebElement> buttons = rowColumns.get(4).findElements(By.tagName("button"));
-	    		  editButton = buttons.get(0);
-	    		  assertTrue(true);
-	    		  break;
-	    	  } else if (row == tableRows.size() - 1) {
-	    		  assertTrue(false);
-	    		  return;
-	    	  }
-	      }
+	      List<WebElement> rowColumns = tableRows.get(0).findElements(By.tagName("td"));
+	      List<WebElement> buttons = rowColumns.get(4).findElements(By.tagName("button"));
+		  editButton = buttons.get(0);
 		  
 		  String newName = "Alan";
 		  String newEmail = "0034@anahuac.mx";
@@ -132,7 +115,7 @@ public class TestCrossBrowsing {
 	      table = driver.findElement(By.xpath("//table/tbody"));
 	      tableRows = table.findElements(By.tagName("tr"));
 	      for (int row = 0; row < tableRows.size(); row++) {
-	    	  List<WebElement> rowColumns = tableRows.get(row).findElements(By.tagName("td"));
+	    	  rowColumns = tableRows.get(row).findElements(By.tagName("td"));
 	    	  if(rowColumns.get(0).getText().equals(newName) &&
 	    		 rowColumns.get(1).getText().equals(newEmail) &&
 	    		 rowColumns.get(2).getText().equals(newAge) &&
@@ -146,7 +129,7 @@ public class TestCrossBrowsing {
 	  }
 	  
 	  @Test
-	  public void testPop_Successful() throws Exception {
+	  public void testPop() throws Exception {
 		  driver.get("https://mern-crud.herokuapp.com/");
 		  
 		  String expectedName = "Alan";
