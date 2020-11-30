@@ -21,7 +21,6 @@ public class TestGoogle {
 
 	  @Before
 	  public void setUp() throws Exception {
-		  System.setProperty("webdriver.gecko.driver", "E:\\-Folders\\Universidad\\Calidad y Pruebas de Software\\geckodriver.exe");
 		  driver = new FirefoxDriver();
 		  baseUrl = "https://www.google.com/";
 		  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
