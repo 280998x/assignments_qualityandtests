@@ -34,7 +34,7 @@ public class TestGoogle {
 	    driver.findElement(By.name("q")).sendKeys("mexico gob covid");
 	    driver.findElement(By.id("tsf")).submit();
 	    driver.findElement(By.xpath("/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div[1]/a/h3/span")).click();
-	    assertEquals("Coronavirus – gob.mx", driver.getTitle());
+	    assertEquals("Coronavirus - gob.mx", driver.getTitle());
 	  }
 
 	  @After
