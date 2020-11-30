@@ -166,10 +166,40 @@ public class TestCrossBrowsing {
 
 	  @After
 	  public void tearDown() throws Exception {
+		addTest();
 	    driver.quit();
 	    String verificationErrorString = verificationErrors.toString();
 	    if (!"".equals(verificationErrorString)) {
 	      fail(verificationErrorString);
 	    }
+	  }
+	  
+	  public void addTest() throws Exception {
+		  driver.get("https://mern-crud.herokuapp.com/");
+		  
+		  WebElement editButton = null;
+		  WebElement table = driver.findElement(By.xpath("//table/tbody"));
+	      List<WebElement> tableRows = table.findElements(By.tagName("tr"));
+	      List<WebElement> rowColumns = tableRows.get(0).findElements(By.tagName("td"));
+	      List<WebElement> buttons = rowColumns.get(4).findElements(By.tagName("button"));
+		  editButton = buttons.get(0);
+		  
+		  String newName = "test";
+		  String newEmail = "test@test.mx";
+		  String newAge = "18"; 
+		  
+		  editButton.click();
+		  driver.findElement(By.name("name")).click();
+		  driver.findElement(By.name("name")).clear();
+		  driver.findElement(By.name("name")).sendKeys(newName);
+		  driver.findElement(By.name("email")).click();
+		  driver.findElement(By.name("email")).click();
+		  driver.findElement(By.name("email")).clear();
+		  driver.findElement(By.name("email")).sendKeys(newEmail);
+		  driver.findElement(By.name("age")).clear();
+		  driver.findElement(By.name("age")).sendKeys(newAge);
+		  driver.findElement(By.xpath("//div[3]/div[2]/div")).click();
+		  driver.findElement(By.xpath("//div[2]/div[3]")).click();
+		  driver.findElement(By.xpath("//form/button")).click();
 	  }
 }
