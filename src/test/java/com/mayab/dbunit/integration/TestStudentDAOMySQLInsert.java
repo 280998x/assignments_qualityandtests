@@ -68,7 +68,7 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 	
 	@Test
 	public void testGetStudent() {
-		Student s = new Student("00331754","Alan Zuniga","00331754@anahuac.mx",22,7.8f);
+		Student s = new Student("331754","Alan Zuniga","00331754@anahuac.mx",22,7.8f);
 		DAOMySQL dao = new DAOMySQL();
 		Student student = dao.getStudent("00331754");
 		assertTrue(s.equals(student));
