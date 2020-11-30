@@ -1,0 +1,31 @@
+language: java
+
+services:
+  - mysql
+
+addons:
+  firefox: 83.0
+
+env:
+  global:
+    - MOZ_HEADLESS=1
+
+before_install:
+  - mysql -e "CREATE DATABASE IF NOT EXISTS quality;"
+
+before_script:
+  - mysql -e "USE quality;
+        DROP TABLE IF EXISTS students;
+        CREATE TABLE students(
+          id int NOT NULL,
+          name varchar(30) DEFAULT NULL,
+          email varchar(100) DEFAULT NULL,
+          age int DEFAULT NULL,
+          average float DEFAULT NULL,
+          PRIMARY KEY (id)
+        )"
+
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.28.0/geckodriver-v0.28.0-linux64.tar.gz
+  - mkdir geckodriver
+  - tar -xzf geckodriver-v0.28.0-linux64.tar.gz -C geckodriver
+  - export PATH=$PATH:$PWD/geckodriver
