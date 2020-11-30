@@ -44,17 +44,6 @@ public class TestCalculadora2 {
 		assertThat(result, is(expectedResult));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void dividirEntre0() {
-		float one = 1;
-		float two = 0;
-		float expectedResult = Float.POSITIVE_INFINITY;
-		float result = -1;
-		
-		result = calculadora.division(one, two);
-		assertThat(result, is(expectedResult));
-	}
-	
 	@Test
 	public void dividir0Entre0() {
 		float one = 1;
