@@ -63,7 +63,7 @@ public class TestCrossBrowsing {
 	      driver.findElement(By.xpath("//div[3]/div[2]/div")).click();
 	      driver.findElement(By.xpath("//div[2]/div/div[2]/div")).click();
 	      driver.findElement(By.xpath("//form/button")).click();
-	      assertEquals("Successfully added!", new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form/div[4]/div/p"))).getText());
+	      assertEquals("Successfully added!", new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form/div[4]/div/p"))).getText());
 	      driver.findElement(By.xpath("//i")).click();
 	      WebElement Table = driver.findElement(By.xpath("//table/tbody"));
 	      List<WebElement> tableRows = Table.findElements(By.tagName("tr"));
@@ -127,7 +127,7 @@ public class TestCrossBrowsing {
 		  driver.findElement(By.xpath("//div[3]/div[2]/div")).click();
 		  driver.findElement(By.xpath("//div[2]/div[1]")).click();
 		  driver.findElement(By.xpath("//form/button")).click();
-		  assertEquals("Successfully updated!", new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form/div[4]/div/p"))).getText());
+		  assertEquals("Successfully updated!", new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form/div[4]/div/p"))).getText());
 	      driver.findElement(By.xpath("//i")).click();
 	      table = driver.findElement(By.xpath("//table/tbody"));
 	      tableRows = table.findElements(By.tagName("tr"));
