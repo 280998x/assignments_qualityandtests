@@ -21,6 +21,7 @@ public class TestGoogle {
 
 	  @Before
 	  public void setUp() throws Exception {
+		  //System.setProperty("webdriver.gecko.driver", "E:\\-Folders\\Universidad\\Calidad y Pruebas de Software\\geckodriver.exe");
 		  driver = new FirefoxDriver();
 		  baseUrl = "https://www.google.com/";
 		  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -30,7 +31,7 @@ public class TestGoogle {
 	  public void testCase1() throws Exception {
 	    driver.get("https://www.google.com/");
 	    driver.findElement(By.name("q")).clear();
-	    driver.findElement(By.name("q")).sendKeys("covid mexico gob");
+	    driver.findElement(By.name("q")).sendKeys("mexico gob covid");
 	    driver.findElement(By.id("tsf")).submit();
 	    driver.findElement(By.xpath("/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div[1]/a/h3/span")).click();
 	    assertEquals("Coronavirus – gob.mx", driver.getTitle());
