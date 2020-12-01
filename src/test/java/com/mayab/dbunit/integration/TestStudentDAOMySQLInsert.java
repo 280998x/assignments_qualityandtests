@@ -76,19 +76,19 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 	
 	@Test
 	public void testUpdate() {
-		Student s = new Student("336174","Jose Rasgado","00336174@anahuac.mx",22,8.8f);
+		Student s = new Student("335486","Fredy Fuzman","00335486@anahuac.mx",21,8.2f);
 		
 		dao.updateStudentAverage(s, 9.1f);
 		
-		assertEquals(9.1f, dao.getStudent("336174").getAverage());
+		assertEquals(9.1f, dao.getStudent("335486").getAverage());
 	}
 	
 	@Test
 	public void testDelete() {
-		Student s = new Student("335486","Fredy Fuzman","00335486@anahuac.mx",21,8.2f);
+		Student s = new Student("336174","Jose Rasgado","00336174@anahuac.mx",22,8.8f);
 		
 		dao.removeStudent(s);
-		s = dao.getStudent("335486");
+		s = dao.getStudent("336174");
 		
 		assertEquals(null, s);
 	}
