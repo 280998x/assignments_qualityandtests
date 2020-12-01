@@ -56,43 +56,38 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 	
 	@Test
 	public void testInsert() throws Exception {
-		Student s = new Student("00335486","Fredy Fuzman","00335486@anahuac.mx",21,8.2f);
+		Student s = new Student("335486","Fredy Fuzman","00335486@anahuac.mx",21,8.2f);
 		
 		dao.addStudent(s);
 		
-		try{
-			IDataSet databaseDataSet = getConnection().createDataSet();
-			ITable actualTable = databaseDataSet.getTable("students");
-			IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/resources/insert_result.xml"));
-			ITable expectedTable = expectedDataSet.getTable("students");
-			Assertion.assertEquals(expectedTable, actualTable);
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-		}
+		Student student = dao.getStudent("335486");
+		
+		assertTrue(s.equals(student));
 	}
 	
 	@Test
 	public void testGet() {
 		Student s = new Student("331754","Alan Zuniga","00331754@anahuac.mx",22,7.8f);
 		Student student = dao.getStudent("331754");
+		
 		assertTrue(s.equals(student));
 	}
 	
 	@Test
 	public void testUpdate() {
-		Student s = new Student("331754","Alan Zuniga","00331754@anahuac.mx",22,7.8f);
+		Student s = new Student("336174","Jose Rasgado","00336174@anahuac.mx",22,8.8f);
 		
-		dao.updateStudentAverage(s, 7.1f);
+		dao.updateStudentAverage(s, 9.1f);
 		
-		assertEquals(7.1f, dao.getStudent("00331754").getAverage());
+		assertEquals(9.1f, dao.getStudent("336174").getAverage());
 	}
 	
 	@Test
 	public void testDelete() {
-		Student s = new Student("331754","Alan Zuniga","00331754@anahuac.mx",22,7.8f);
+		Student s = new Student("335486","Fredy Fuzman","00335486@anahuac.mx",21,8.2f);
 		
 		dao.removeStudent(s);
-		s = dao.getStudent("331754");
+		s = dao.getStudent("335486");
 		
 		assertEquals(null, s);
 	}

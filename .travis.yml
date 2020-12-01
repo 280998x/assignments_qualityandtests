@@ -25,8 +25,9 @@ before_script:
           PRIMARY KEY (id)
         );"
   - mysql -e "USE quality;
-        INSERT INTO students(id,name,email,age,average) values('00331754','Alan Zuniga','00331754@anahuac.mx',22,7.8);
-        INSERT INTO students(id,name,email,age,average) values('00335486','Fredy Fuzman','00335486@anahuac.mx',21,8.2);"
+        INSERT INTO students(id,name,email,age,average) values('331754','Alan Zuniga','00331754@anahuac.mx',22,7.8);
+        INSERT INTO students(id,name,email,age,average) values('335486','Fredy Fuzman','00335486@anahuac.mx',21,8.2);
+        INSERT INTO students(id,name,email,age,average) values('336174','Jose Rasgado','00336174@anahuac.mx',22,8.8);"
 
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.28.0/geckodriver-v0.28.0-linux64.tar.gz
   - mkdir geckodriver
