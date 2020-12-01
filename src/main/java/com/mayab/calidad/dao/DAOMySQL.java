@@ -91,12 +91,10 @@ public class DAOMySQL implements DAO {
 			ps.setString(1, id);
 			
 			ResultSet result = ps.executeQuery();
-			result.next();
-			
-			student = new Student(result.getString("id"), result.getString("name"), result.getString("email"), result.getInt("age"), result.getFloat("average"));
+			if(result.next())
+				student = new Student(result.getString("id"), result.getString("name"), result.getString("email"), result.getInt("age"), result.getFloat("average"));
 			
 			con.close();
-			
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}
