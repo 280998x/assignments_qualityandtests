@@ -29,7 +29,7 @@ public class TestCRUD {
   }
 
   @Test
-  public void testAdd_Succesful() throws Exception {
+  public void testAdd() throws Exception {
 	  String name = "Alan Zuniga";
 	  String email = "00331754@anahuac.mx";
 	  String age = "22";
@@ -50,7 +50,7 @@ public class TestCRUD {
       driver.findElement(By.xpath("//div[3]/div[2]/div")).click();
       driver.findElement(By.xpath("//div[2]/div/div[2]/div")).click();
       driver.findElement(By.xpath("//form/button")).click();
-      assertEquals("Successfully added!", new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form/div[4]/div/p"))).getText());
+      assertEquals("Successfully added!", new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form/div[4]/div/p"))).getText());
       driver.findElement(By.xpath("//i")).click();
       WebElement Table = driver.findElement(By.xpath("//table/tbody"));
       List<WebElement> tableRows = Table.findElements(By.tagName("tr"));
@@ -69,32 +69,15 @@ public class TestCRUD {
   }
   
   @Test
-  public void testModify_Successful() throws Exception {
+  public void testModify() throws Exception {
 	  driver.get("https://mern-crud.herokuapp.com/");
 	  
-	  String expectedName = "Alan Zuniga";
-	  String expectedEmail = "00331754@anahuac.mx";
-	  String expectedAge = "22";
-	  String expectedSex = "m";
 	  WebElement editButton = null;
-	  
 	  WebElement table = driver.findElement(By.xpath("//table/tbody"));
       List<WebElement> tableRows = table.findElements(By.tagName("tr"));
-      for (int row = 0; row < tableRows.size(); row++) {
-    	  List<WebElement> rowColumns = tableRows.get(row).findElements(By.tagName("td"));
-    	  if(rowColumns.get(0).getText().equals(expectedName) &&
-    		 rowColumns.get(1).getText().equals(expectedEmail) &&
-    		 rowColumns.get(2).getText().equals(expectedAge) &&
-    		 rowColumns.get(3).getText().equals(expectedSex)) {
-    		  List<WebElement> buttons = rowColumns.get(4).findElements(By.tagName("button"));
-    		  editButton = buttons.get(0);
-    		  assertTrue(true);
-    		  break;
-    	  } else if (row == tableRows.size() - 1) {
-    		  assertTrue(false);
-    		  return;
-    	  }
-      }
+      List<WebElement> rowColumns = tableRows.get(0).findElements(By.tagName("td"));
+      List<WebElement> buttons = rowColumns.get(4).findElements(By.tagName("button"));
+	  editButton = buttons.get(0);
 	  
 	  String newName = "Alan";
 	  String newEmail = "0034@anahuac.mx";
@@ -120,7 +103,7 @@ public class TestCRUD {
       table = driver.findElement(By.xpath("//table/tbody"));
       tableRows = table.findElements(By.tagName("tr"));
       for (int row = 0; row < tableRows.size(); row++) {
-    	  List<WebElement> rowColumns = tableRows.get(row).findElements(By.tagName("td"));
+    	  rowColumns = tableRows.get(row).findElements(By.tagName("td"));
     	  if(rowColumns.get(0).getText().equals(newName) &&
     		 rowColumns.get(1).getText().equals(newEmail) &&
     		 rowColumns.get(2).getText().equals(newAge) &&
@@ -134,32 +117,21 @@ public class TestCRUD {
   }
   
   @Test
-  public void testPop_Successful() throws Exception {
+  public void testPop() throws Exception {
 	  driver.get("https://mern-crud.herokuapp.com/");
-	  
-	  String expectedName = "Alan";
-	  String expectedEmail = "0034@anahuac.mx";
-	  String expectedAge = "21";
-	  String expectedSex = "m";
 	  
 	  WebElement table = driver.findElement(By.xpath("//table/tbody"));
       List<WebElement> tableRows = table.findElements(By.tagName("tr"));
-      
-      for (int row = 0; row < tableRows.size(); row++) {
-    	  List<WebElement> rowColumns = tableRows.get(row).findElements(By.tagName("td"));
-    	  if(rowColumns.get(0).getText().equals(expectedName) &&
-    		 rowColumns.get(1).getText().equals(expectedEmail) &&
-    		 rowColumns.get(2).getText().equals(expectedAge) &&
-    		 rowColumns.get(3).getText().equals(expectedSex)) {
-    		  List<WebElement> buttons = rowColumns.get(4).findElements(By.tagName("button"));
-    		  buttons.get(1).click();
-    		  driver.findElement(By.xpath("//div[3]/button")).click();
-    		  break;
-    	  } else if (row == tableRows.size() - 1) {
-    		  assertTrue(false);
-    		  return;
-    	  }
-      }
+	  List<WebElement> rowColumns = tableRows.get(0).findElements(By.tagName("td"));
+	  
+	  String expectedName = rowColumns.get(0).getText();
+	  String expectedEmail = rowColumns.get(1).getText();
+	  String expectedAge = rowColumns.get(2).getText();
+	  String expectedSex = rowColumns.get(3).getText();
+	  
+	  List<WebElement> buttons = rowColumns.get(4).findElements(By.tagName("button"));
+	  buttons.get(1).click();
+	  driver.findElement(By.xpath("//div[3]/button")).click();
       
 	  driver.get("https://mern-crud.herokuapp.com/");
       
@@ -167,7 +139,7 @@ public class TestCRUD {
       tableRows = table.findElements(By.tagName("tr"));
       
       for (int row = 0; row < tableRows.size(); row++) {
-    	  List<WebElement> rowColumns = tableRows.get(row).findElements(By.tagName("td"));
+    	  rowColumns = tableRows.get(row).findElements(By.tagName("td"));
     	  if(rowColumns.get(0).getText().equals(expectedName) &&
     		 rowColumns.get(1).getText().equals(expectedEmail) &&
     		 rowColumns.get(2).getText().equals(expectedAge) &&
@@ -182,43 +154,41 @@ public class TestCRUD {
 
   @After
   public void tearDown() throws Exception {
+	  addTest();
     driver.quit();
     String verificationErrorString = verificationErrors.toString();
     if (!"".equals(verificationErrorString)) {
       fail(verificationErrorString);
     }
   }
-
-  private boolean isElementPresent(By by) {
-    try {
-      driver.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
+  
+  public void addTest() throws Exception {
+	  driver.get("https://mern-crud.herokuapp.com/");
+	  
+	  WebElement editButton = null;
+	  WebElement table = driver.findElement(By.xpath("//table/tbody"));
+      List<WebElement> tableRows = table.findElements(By.tagName("tr"));
+      List<WebElement> rowColumns = tableRows.get(0).findElements(By.tagName("td"));
+      List<WebElement> buttons = rowColumns.get(4).findElements(By.tagName("button"));
+	  editButton = buttons.get(0);
+	  
+	  String newName = "test";
+	  String newEmail = "test@test.mx";
+	  String newAge = "18"; 
+	  
+	  editButton.click();
+	  driver.findElement(By.name("name")).click();
+	  driver.findElement(By.name("name")).clear();
+	  driver.findElement(By.name("name")).sendKeys(newName);
+	  driver.findElement(By.name("email")).click();
+	  driver.findElement(By.name("email")).click();
+	  driver.findElement(By.name("email")).clear();
+	  driver.findElement(By.name("email")).sendKeys(newEmail);
+	  driver.findElement(By.name("age")).clear();
+	  driver.findElement(By.name("age")).sendKeys(newAge);
+	  driver.findElement(By.xpath("//div[3]/div[2]/div")).click();
+	  driver.findElement(By.xpath("//div[2]/div[3]")).click();
+	  driver.findElement(By.xpath("//form/button")).click();
   }
 
-  private boolean isAlertPresent() {
-    try {
-      driver.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
-
-  private String closeAlertAndGetItsText() {
-    try {
-      Alert alert = driver.switchTo().alert();
-      String alertText = alert.getText();
-      if (acceptNextAlert) {
-        alert.accept();
-      } else {
-        alert.dismiss();
-      }
-      return alertText;
-    } finally {
-      acceptNextAlert = true;
-    }
-  }
 }

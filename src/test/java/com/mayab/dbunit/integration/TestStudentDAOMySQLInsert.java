@@ -87,7 +87,7 @@ public class TestStudentDAOMySQLInsert extends DBTestCase {
 		Student s = new Student("335486","Fredy Fuzman","00335486@anahuac.mx",21,8.2f);
 		
 		dao.removeStudent(s);
-		s = dao.getStudent("335486");
+		s = dao.getStudent("331754");
 		
 		assertEquals(null, s);
 	}
